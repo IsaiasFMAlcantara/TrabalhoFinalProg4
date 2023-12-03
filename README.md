@@ -104,7 +104,6 @@
 - Murilo José
 - Thauan Felipe
 ***
-***
 ### Requisitos trabalho final `programação IV`
 O trabalho consiste em criar uma aplicação web utilizando o framework Django e deverá conter os seguintes itens:
 1. [x] O sistema deverá ter no mínimo dois níveis de usuários e deverá haver páginas que vão ser acessíveis a um determinado tipo de usuário.
