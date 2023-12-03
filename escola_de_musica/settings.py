@@ -46,7 +46,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+LANGUAGES = [
+    ('en', ('English')),
+]
 
 ROOT_URLCONF = 'escola_de_musica.urls'
 
