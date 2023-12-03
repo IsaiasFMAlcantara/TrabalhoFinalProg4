@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +49,7 @@ MIDDLEWARE = [
 
 LANGUAGES = [
     ('en', ('English')),
+    ('pt-br', ('Portuguese')),
 ]
 
 ROOT_URLCONF = 'escola_de_musica.urls'

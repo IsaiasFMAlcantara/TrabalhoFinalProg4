@@ -1,3 +1,6 @@
+from escola_de_musica import settings
+from django.shortcuts import render
+from django.utils import translation
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
@@ -7,7 +10,6 @@ from django.contrib import messages
 
 class IndexView(TemplateView):
     template_name = "index.html"
-
     
 class SobreView(TemplateView):
     template_name = "sobre.html"
@@ -49,6 +51,8 @@ def logar(request):
         form = AuthenticationForm()
     return render(request, template_name="user/login.html", context={"form": form})
 
-
-
-
+def change_language(request, language):
+    if language in [lang[0] for lang in settings.LANGUAGES]:
+        translation.activate(language)
+        request.session[translation.LANGUAGE_SESSION_KEY] = language
+    return redirect(request.META.get('HTTP_REFERER', 'home'))

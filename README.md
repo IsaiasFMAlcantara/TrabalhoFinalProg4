@@ -97,6 +97,25 @@ Acesse o sistema através do URL [http://localhost:8000/](http://localhost:8000/
     - [x] Implementar views para adicionar, visualizar, editar e excluir orquestras.
     - [x] Configurar as URLs correspondentes para as views de orquestras.
 ***
+### Definir quais idiomas irá usar no arquivo `settings.py`
+```py
+# necessario colocar pt-br pra ele não dar erro
+# com LANGUAGE_CODE
+LANGUAGES = [
+    ('en', ('English')),
+    ('pt-br', ('Portuguese')),
+]
+```
+### criar os arquivos .po
+```sh
+python manage.py makemessages -l pt
+python manage.py makemessages -l en
+```
+### criar os arquivos .mo
+```sh
+python manage.py compilemessages
+```
+***
 ### Contribuição
 Se você deseja contribuir para o projeto, siga as etapas abaixo:
 1. Faça um fork do repositório.
