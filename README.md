@@ -13,7 +13,7 @@ O trabalho consiste em criar uma aplicação web utilizando o framework Django e
 1. [x] O sistema deverá ter um visual agradável para os usuários.
 1. [ ] O sistema deve estar disponível em pelo menos mais um idioma.
 1. [x] O sistema deve permitir interação dos usuários, seja para se cadastrar no site, seja para mudar o visual do sistema, ou outra interação pertinente.
-1. [ ]O sistema deve se preocupar com a acessibilidade (principalmente para deficientes visuais).
+1. [ ] O sistema deve se preocupar com a acessibilidade (principalmente para deficientes visuais).
 ***
 ### Sobre a atividade
 Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, criado para gerenciar orquestras, músicos, instrumentos, apresentações, sinfonias e suas respectivas associações.
