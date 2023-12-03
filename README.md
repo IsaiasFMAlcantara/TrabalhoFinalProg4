@@ -115,6 +115,9 @@ python manage.py makemessages -l en
 ```sh
 python manage.py compilemessages
 ```
+Os arquivos django.po e django.mo estão dentro de
+/PROG-ESCOLA-MUSICA/locale/en/LC_MESSAGES
+/PROG-ESCOLA-MUSICA/locale/pt/LC_MESSAGES
 ***
 ### Contribuição
 Se você deseja contribuir para o projeto, siga as etapas abaixo:
