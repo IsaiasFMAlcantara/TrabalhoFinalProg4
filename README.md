@@ -1,10 +1,3 @@
-# Escola de Música
-### Alunos
-- Gabriel Nascimento
-- Isaías Félix
-- Murilo José
-- Thauan Felipe
-***
 ### O que eu tentei
 1. Idiomas
     ### Definir quais idiomas irá usar no arquivo `settings.py`
@@ -104,6 +97,13 @@
         <a href="{% url 'sinfonia:gerar_pdf_sinfonia' sinf.id %}">Gerar PDF</a>
     </td>
     ```
+# Escola de Música
+### Alunos
+- Gabriel Nascimento
+- Isaías Félix
+- Murilo José
+- Thauan Felipe
+***
 ***
 ### Requisitos trabalho final `programação IV`
 O trabalho consiste em criar uma aplicação web utilizando o framework Django e deverá conter os seguintes itens:
