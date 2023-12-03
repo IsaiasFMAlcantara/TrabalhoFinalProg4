@@ -1,5 +1,18 @@
 # Escola de Música
 
+## Requisitos trabalho final `programação IV`
+Imagem Transcrita:<br>
+O trabalho consiste em criar uma aplicação web utilizando o framework Django e deverá conter os seguintes itens:
+1. O sistema deverá ter no mínimo dois níveis de usuários e deverá haver páginas que vão ser acessíveis a um determinado tipo de usuário.
+1. O sistema deverá gerar pelo menos uma relação em PDF.
+1. O sistema deverá gerar pelo menos uma aplicação de AJAX.
+1. O sistema deverá ter um visual agradável para os usuários.
+1. O sistema deve estar disponível em pelo menos mais um idioma.
+1. O sistema deve permitir interação dos usuários, seja para se cadastrar no site, seja para mudar o visual do sistema, ou outra interação pertinente.
+1. O sistema deve se preocupar com a acessibilidade (principalmente para deficientes visuais).<br>
+Ultima atualização: quinta-feira, 9 nov. 2023, 22:08
+## Sobre a atividade
+Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, criado para gerenciar orquestras, músicos, instrumentos, apresentações, sinfonias e suas respectivas associações.
 
 ***
 [Teste o sistema clicando aqui.](http://murilloj15.pythonanywhere.com/)
@@ -7,10 +20,6 @@
 Usuário: admin  
 Senha: admin
 ***
-
-## Sobre a atividade
-
-Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, criado para gerenciar orquestras, músicos, instrumentos, apresentações, sinfonias e suas respectivas associações.
 
 ## Funcionalidades
 
@@ -23,7 +32,7 @@ Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, cr
 ***
 ## Alunos
 - Gabriel Nascimento
-- Isaías Felix
+- Isaías Félix
 - Murilo José
 - Thauan Felipe
 ***
