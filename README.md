@@ -5,6 +5,106 @@
 - Murilo José
 - Thauan Felipe
 ***
+### O que eu tentei
+1. Idiomas
+    ### Definir quais idiomas irá usar no arquivo `settings.py`
+    ```py
+    # necessario colocar pt-br pra ele não dar erro com LANGUAGE_CODE
+    LANGUAGES = [
+        ('en', ('English')),
+        ('pt-br', ('Portuguese')),
+    ]
+    ```
+    ### É necessario instalar essa bibliotéca para que funcione os demais comandos
+    ```sh
+    sudo apt-get install gettext
+    ```
+    ### criar os arquivos .po
+    ```sh
+    python manage.py makemessages -l pt
+    python manage.py makemessages -l en
+    ```
+    ### criar os arquivos .mo
+    ```sh
+    python manage.py compilemessages
+    ```
+    Os arquivos django.po e django.mo estão dentro de:  
+    /PROG-ESCOLA-MUSICA/locale/en/LC_MESSAGES  
+    /PROG-ESCOLA-MUSICA/locale/pt/LC_MESSAGES
+    ### Arquivos views.py do core
+    ```py
+    # views.py
+    from django.shortcuts import render
+    from django.utils import translation
+
+    def change_language(request, language):
+        if language in [lang[0] for lang in settings.LANGUAGES]:
+            translation.activate(language)
+            request.session[translation.LANGUAGE_SESSION_KEY] = language
+        return redirect(request.META.get('HTTP_REFERER', 'home'))  # Redirecione de volta para a página anterior ou 'home'.
+    ```
+    ### Arquivos urls.py do core
+    ```py
+    # urls.py
+    from django.urls import path
+    from .views import change_language
+
+    urlpatterns = [
+        # ... outras URLs ...
+        path('change-language/<str:language>/', change_language, name='change_language'),
+    ]
+    ```
+    ### Arquivos lenguage_selector.html do core
+    O caminho é core/template/components/lenguage_selector.html
+    ```html
+    <!-- templates/language_selector.html -->
+    <form action="{% url 'change_language' language_code %}" method="post">
+        {% csrf_token %}
+        <select name="language_code" onchange="this.form.submit()">
+            {% for lang_code, lang_name in LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == request.LANGUAGE_CODE %}selected{% endif %}>{{ lang_name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    ```
+    ### implementar no arquivo nav_menu.html
+    ```html
+    <!-- Seletor de Idioma -->
+    <div class="col-lg-2" data-aos-duration="600" data-aos="fade-down" data-aos-delay="0">
+        {% include 'language_selector.html' %}
+    </div>
+    ```
+2. Gerar PDF
+    ### Arquivo views.py de sinfonia
+    ```py
+    class GerarPDFSinfoniaView(PermissionRequiredMixin, View):
+    permission_required = 'core.view_sinfonia'
+    def get(self, request, sinfonia_id):
+        try:
+            sinfonia = get_object_or_404(Sinfonia, pk=sinfonia_id)
+            template = get_template('sinfonia_template.html')
+            contexto = {'sinfonia': sinfonia}
+            html = template.render(contexto)
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = f'filename="{sinfonia.nome}_relatorio.pdf"'
+            pisa_status = pisa.CreatePDF(html, dest=response)
+            if pisa_status.err:
+                return HttpResponse('Erro ao gerar o PDF')
+            return response
+        except Sinfonia.DoesNotExist:
+            return HttpResponse('Sinfonia não encontrada')
+    ```
+    ### Adicionar essa linha no urls.py
+    ```py
+    path('gerar_pdf_sinfonia/<int:sinfonia_id>/', views.GerarPDFSinfoniaView.as_view(), name='gerar_pdf_sinfonia'),
+    ```
+    ### Adicionar essa linha no arquivo tabela_sinfonia.html 
+    ```html
+    <td>
+        <a href="{% url 'sinfonia:gerar_pdf_sinfonia' sinf.id %}">Gerar PDF</a>
+    </td>
+    ```
+***
 ### Requisitos trabalho final `programação IV`
 O trabalho consiste em criar uma aplicação web utilizando o framework Django e deverá conter os seguintes itens:
 1. [x] O sistema deverá ter no mínimo dois níveis de usuários e deverá haver páginas que vão ser acessíveis a um determinado tipo de usuário.
@@ -96,28 +196,6 @@ Acesse o sistema através do URL [http://localhost:8000/](http://localhost:8000/
 - Orquestras
     - [x] Implementar views para adicionar, visualizar, editar e excluir orquestras.
     - [x] Configurar as URLs correspondentes para as views de orquestras.
-***
-### Definir quais idiomas irá usar no arquivo `settings.py`
-```py
-# necessario colocar pt-br pra ele não dar erro
-# com LANGUAGE_CODE
-LANGUAGES = [
-    ('en', ('English')),
-    ('pt-br', ('Portuguese')),
-]
-```
-### criar os arquivos .po
-```sh
-python manage.py makemessages -l pt
-python manage.py makemessages -l en
-```
-### criar os arquivos .mo
-```sh
-python manage.py compilemessages
-```
-Os arquivos django.po e django.mo estão dentro de:  
-/PROG-ESCOLA-MUSICA/locale/en/LC_MESSAGES  
-/PROG-ESCOLA-MUSICA/locale/pt/LC_MESSAGES
 ***
 ### Contribuição
 Se você deseja contribuir para o projeto, siga as etapas abaixo:
